@@ -3,231 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关卡代码目录</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>导航页</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
+        /* 基础布局 + 轻量装饰 */
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, #f8c471 0%, #e67e22 100%);
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            padding: 2rem;
+            font-family: "Microsoft YaHei", sans-serif;
+            /* 柔和背景色，替代纯白 */
+            background-color: #f8f9fa;
+            /* 页面最大宽度，居中显示 */
             max-width: 800px;
             margin: 0 auto;
         }
-        
-        .sand-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        
-        .directory-container {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 40px;
-        }
-        
-        .directory-container h2 {
-            color: #2c3e50;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
+        h1 {
+            /* 标题居中 + 柔和配色 */
             text-align: center;
-            border-bottom: 2px solid #e67e22;
-            padding-bottom: 15px;
-        }
-        
-        .levels-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
-        .level-item {
-            display: flex;
-            align-items: center;
-            padding: 18px 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #333;
-            border-left: 4px solid #e67e22;
-        }
-        
-        .level-item:hover {
-            background-color: #f0f0f0;
-            transform: translateX(5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .level-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: #e67e22;
-            color: white;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .level-name {
-            font-size: 1.1rem;
-            font-weight: 600;
             color: #2c3e50;
+            /* 标题下方轻微装饰线 */
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.8rem;
+            margin-bottom: 2rem;
         }
-        
-        .level-item:hover .level-name {
-            color: #e67e22;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-            border-top: 1px solid #ddd;
-            color: #7f8c8d;
-            font-size: 0.95rem;
-        }
-        
-        .instructions {
+        .nav-menu {
+            list-style: none;
+            line-height: 2.2;
+            /* 导航菜单内边距 + 白色背景 + 轻微阴影 */
+            padding: 1.5rem 2rem;
             background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
-        
-        .instructions h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .nav-menu li {
+            /* 导航项间距 */
+            margin: 0.5rem 0;
+            padding-left: 0.5rem;
+            /* 导航项左侧小装饰线 */
+            border-left: 3px solid transparent;
+            transition: border-color 0.2s;
         }
-        
-        .instructions p {
-            margin-bottom: 10px;
-            color: #666;
-        }
-        
-        .instructions ul {
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .instructions li {
-            margin-bottom: 8px;
-            color: #666;
-        }
-        
-        .code-link {
-            display: block;
-            margin-top: 30px;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-        
-        .code-link a {
-            color: #e67e22;
+        .nav-menu a {
+            color: #2980b9;
             text-decoration: none;
-            font-weight: 600;
-            border-bottom: 2px dotted #e67e22;
-            padding-bottom: 2px;
+            font-size: 1.1rem;
+            transition: color 0.2s;
         }
-        
-        .code-link a:hover {
-            color: #d35400;
-            border-bottom-style: solid;
+        /* hover 效果优化（更细腻） */
+        .nav-menu li:hover {
+            border-left-color: #3498db;
         }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .levels-list {
-                grid-template-columns: 1fr;
-            }
-            
-            header h1 {
-                font-size: 2.2rem;
-            }
-            
-            header p {
-                font-size: 1rem;
-            }
-            
-            .directory-container {
-                padding: 20px;
-            }
+        .nav-menu a:hover {
+            color: #1abc9c;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-<div class="container">
-        <header>
-            <div class="sand-icon">
-                <i class="fas fa-mountain-sun"></i>
-            </div>
-            <h1>关卡代码目录</h1>
-            <p>点击关卡名称查看完整代码</p>
-        </header>
-        
-        <section class="instructions">
-          <h2><i class="fas fa-info-circle"></i> 使用说明</h2>
-            <p>点击下方任意关卡名称，将跳转到代码详情页查看该关卡的完整代码。</p>
-            <p>在代码详情页中：</p>
-          <ul>
-                <li>鼠标经过代码区域会显示复制按钮</li>
-                <li>点击复制按钮即可复制代码到剪贴板</li>
-          </ul>
-      </section>
-        <div class="code-link">
-          <p>查看所有关卡代码的完整页面：</p>
-          <p><a href="沙漠.html" target="_blank">沙漠关卡代码详情页</a></p>
-<p><a href="山峰.html" target="_blank">安息之云山峰代码详细页</a></p>
-  </div>
-</div>
-    
-    <footer class="footer">
-      <p>关卡代码目录</p>
-      <p style="color: #FF0000">注意：代码仅供参考，不建议直接抄！</p>
-    </footer>
+    <h1>探索自然导航页</h1>
+    <ul class="nav-menu">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="沙漠.html">沙漠探索</a></li>
+        <li><a href="山巅.html">山巅风光</a></li>
+        <li><a href="山峰.html">山峰图鉴</a></li>
+    </ul>
 </body>
 </html>
